@@ -19,6 +19,11 @@ The plan is to lease a dark fiber pair on existing terrestrial cable infrastruct
 
 The day-one design uses one G.652.D single-mode fiber pair, with one strand per direction. Olympus is on the route, but the day-one service has no local add/drop requirement there.
 
+```text
+Day one: Elysium -- 640 km -- Olympus -- 800 km via E-Hut-01 and other huts -- Tartarus
+Future:  Tartarus -- 320 km -- Hades Gateway
+```
+
 ## Route survey and facilities review
 
 Engineering set G.652.D as the baseline and asked Fiber Sourcing to flag any alternatives or mixed fiber types. The survey request called for the endpoint demarcations, routed span lengths, installed fiber types, measured losses, and locations where the pair could be accessed. Facilities was asked to check rack space, DC power, cooling, and fiber panel access at the endpoints and intermediate huts.
@@ -48,6 +53,35 @@ Before authorizing the lease:
 
 - Verify the final equipment configuration meets the 400G margin requirement in both directions.
 
-## Next design stage
+## Decision 02 — 400G operating mode and spectrum
 
-Complete the span inventory and amplifier layout, select the terminal equipment and 400G operating mode, and build the spectrum plan. Evaluate the day-one design and the future Olympus add/drop configuration separately. Then document commissioning, acceptance tests, and handoff criteria.
+Use **Mode B** in the available **100 GHz** end-to-end slot. Both options deliver 400G. GSNR values are synthetic and represent the weaker direction. The required design margin is 1.5 dB above the optic minimum.
+
+| Mode | Slot width | Optic minimum GSNR | Day-one GSNR | Day-one margin | GSNR with Olympus add/drop | Margin with Olympus add/drop |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| A | 75 GHz | 15.0 dB | 17.4 dB | 2.4 dB | 16.1 dB | 1.1 dB |
+| **B** | **100 GHz** | **14.5 dB** | **17.0 dB** | **2.5 dB** | **16.8 dB** | **2.3 dB** |
+
+Mode B meets the margin requirement in both layouts and leaves 0.8 dB above the requirement after the Olympus upgrade. It uses 25 GHz more spectrum than Mode A. Confirm the center frequency, slot edges and adjacent-channel compatibility before issuing the provisioning plan.
+
+## Commissioning and customer handoff
+
+Before I hand the wave over, I want two reports from the final path.
+
+1. **Optical line report.** I’d ask for launch and receive power at the specified ports, pre-FEC BER against the selected mode’s limit, and Q or SNR margin where the modem reports it. I’d check both directions for zero new uncorrectable FEC events and review any loss-of-signal or loss-of-lock alarms during the agreed test window.
+2. **End-to-end service acceptance report.** I’d have the tech test from the Elysium customer demarc to the Tartarus customer demarc using the agreed 400GbE traffic profile. I’d review the delivered rate and frame loss, plus latency or delay variation if the service calls for it. If we agreed to a 24-hour BERT, I’d ask for the error count and 24 hours of valid, synchronized test time on the final path.
+
+I’d save both reports with the circuit configuration and handoff record. Before adding Olympus later, I’d rerun the optical model with the proposed add/drop configuration and test the existing 400G through path during the change.
+
+## Supporting tools and design status
+
+From the project folder, run:
+
+```powershell
+python .\amplifier_check.py
+python ".\GSNR Tracker\gsnr_tracker.py"
+```
+
+The [span inventory](span_inventory.csv) and amplifier checker screen per-direction receive power and calculate starting gain. The [GSNR Tracker](GSNR%20Tracker/README.md) screens modeled results against the optic threshold and design reserve, then creates an Excel report. To check the selected mode after adding Olympus, enter **14.5 dB** as the optic minimum, **1.5 dB** as the design margin, and **16.8 dB** as the modeled GSNR. The result clears the target by **0.8 dB**.
+
+Exact equipment models, channel assignment, vendor qualification, and field acceptance are still to be verified in a real deployment.
