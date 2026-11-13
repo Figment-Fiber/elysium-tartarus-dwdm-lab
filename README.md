@@ -8,6 +8,16 @@ Management approved the business case and secured a signed order for an unprotec
 
 The plan is to lease a dark fiber pair on existing terrestrial cable infrastructure and use existing intermediate facilities for amplification where feasible. Olympus is an existing site on the route. It has two unconfirmed 100G quote requests, so the design should preserve the option to add and drop wavelengths there later. Hades Gateway is a separate future extension from Tartarus.
 
+## Latest progress · November 12, 2026
+
+I built and tested GNPy models for the first two spans of the Elysium–Tartarus route, covering 160 km. Both directions reproduced the losses in the span inventory.
+
+When I added W02, the amplifier at W‑Hut‑01 changed its output target from −2 to −1 dBm per channel because it was now feeding another fiber span. At the final receiver, channel 36 still arrived at about −2 dBm, but its GSNR fell from 26.93 to 24.13 dB. That showed me why restoring signal power alone doesn’t tell you whether a longer route has enough signal-quality margin.
+
+Next I’ll extend the model to the full 1,440 km route and evaluate the selected 400G modem mode in both directions.
+
+[GNPy models, commands, and detailed results](gnpy-lab/README.md)
+
 ## Candidate route
 
 | Segment | Routed fiber distance | Day-one role |
