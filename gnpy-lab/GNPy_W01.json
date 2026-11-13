@@ -1,0 +1,85 @@
+{
+  "network_name": "Elysium–Tartarus training lab — W01 only",
+  "elements": [
+    {
+      "uid": "Elysium",
+      "type": "Transceiver"
+    },
+    {
+      "uid": "W-Hut-01",
+      "type": "Transceiver"
+    },
+    {
+      "uid": "W01-FWD",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 78,
+        "length_units": "km",
+        "loss_coef": 0.20769230769230768,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-W-Hut-01",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 16.2,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    },
+    {
+      "uid": "W01-REV",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 78,
+        "length_units": "km",
+        "loss_coef": 0.21153846153846154,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-Elysium",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 16.5,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from_node": "Elysium",
+      "to_node": "W01-FWD"
+    },
+    {
+      "from_node": "W01-FWD",
+      "to_node": "EDFA-W-Hut-01"
+    },
+    {
+      "from_node": "EDFA-W-Hut-01",
+      "to_node": "W-Hut-01"
+    },
+    {
+      "from_node": "W-Hut-01",
+      "to_node": "W01-REV"
+    },
+    {
+      "from_node": "W01-REV",
+      "to_node": "EDFA-Elysium"
+    },
+    {
+      "from_node": "EDFA-Elysium",
+      "to_node": "Elysium"
+    }
+  ]
+}

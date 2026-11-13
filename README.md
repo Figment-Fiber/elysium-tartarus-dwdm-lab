@@ -84,4 +84,6 @@ python ".\GSNR Tracker\gsnr_tracker.py"
 
 The [span inventory](span_inventory.csv) and amplifier checker screen per-direction receive power and calculate starting gain. The [GSNR Tracker](GSNR%20Tracker/README.md) screens modeled results against the optic threshold and design reserve, then creates an Excel report. To check the selected mode after adding Olympus, enter **14.5 dB** as the optic minimum, **1.5 dB** as the design margin, and **16.8 dB** as the modeled GSNR. The result clears the target by **0.8 dB**.
 
+The [GNPy span lab](gnpy-lab/README.md) reproduces the W01 and W02 inventory losses in both directions and compares modeled receive power, OSNR, and GSNR.
+
 Exact equipment models, channel assignment, vendor qualification, and field acceptance are still to be verified in a real deployment.

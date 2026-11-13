@@ -1,0 +1,147 @@
+{
+  "network_name": "Elysium–Tartarus training lab — W01 and W02",
+  "elements": [
+    {
+      "uid": "Elysium",
+      "type": "Transceiver"
+    },
+    {
+      "uid": "W-Hut-02",
+      "type": "Transceiver"
+    },
+    {
+      "uid": "W01-FWD",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 78,
+        "length_units": "km",
+        "loss_coef": 0.20769230769230768,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-W-Hut-01-FWD",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 16.2,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    },
+    {
+      "uid": "W02-FWD",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 82,
+        "length_units": "km",
+        "loss_coef": 0.2121951219512195,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-W-Hut-02-FWD",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 17.4,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    },
+    {
+      "uid": "W02-REV",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 82,
+        "length_units": "km",
+        "loss_coef": 0.2097560975609756,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-W-Hut-01-REV",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 17.2,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    },
+    {
+      "uid": "W01-REV",
+      "type": "Fiber",
+      "type_variety": "SSMF",
+      "params": {
+        "length": 78,
+        "length_units": "km",
+        "loss_coef": 0.21153846153846154,
+        "att_in": 0,
+        "con_in": 0,
+        "con_out": 0
+      }
+    },
+    {
+      "uid": "EDFA-Elysium-REV",
+      "type": "Edfa",
+      "type_variety": "std_low_gain",
+      "operational": {
+        "gain_target": 16.5,
+        "tilt_target": 0,
+        "out_voa": 0
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from_node": "Elysium",
+      "to_node": "W01-FWD"
+    },
+    {
+      "from_node": "W01-FWD",
+      "to_node": "EDFA-W-Hut-01-FWD"
+    },
+    {
+      "from_node": "EDFA-W-Hut-01-FWD",
+      "to_node": "W02-FWD"
+    },
+    {
+      "from_node": "W02-FWD",
+      "to_node": "EDFA-W-Hut-02-FWD"
+    },
+    {
+      "from_node": "EDFA-W-Hut-02-FWD",
+      "to_node": "W-Hut-02"
+    },
+    {
+      "from_node": "W-Hut-02",
+      "to_node": "W02-REV"
+    },
+    {
+      "from_node": "W02-REV",
+      "to_node": "EDFA-W-Hut-01-REV"
+    },
+    {
+      "from_node": "EDFA-W-Hut-01-REV",
+      "to_node": "W01-REV"
+    },
+    {
+      "from_node": "W01-REV",
+      "to_node": "EDFA-Elysium-REV"
+    },
+    {
+      "from_node": "EDFA-Elysium-REV",
+      "to_node": "Elysium"
+    }
+  ]
+}
