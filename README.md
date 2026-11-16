@@ -97,3 +97,12 @@ The [span inventory](span_inventory.csv) and amplifier checker screen per-direct
 The [GNPy span lab](gnpy-lab/README.md) reproduces the W01 and W02 inventory losses in both directions and compares modeled receive power, OSNR, and GSNR.
 
 Exact equipment models, channel assignment, vendor qualification, and field acceptance are still to be verified in a real deployment.
+
+### Pre-FEC BER trend checker
+
+Run `python fec_trend_check.py` from the lab folder. The script checks the latest BER against a warning threshold and compares it with the immediately preceding interval.
+
+With a warning threshold of `0.0008` and a latest reading of `0.0009`, the script was verified in two cases:
+
+- Previous reading `None` → `WARNING` and `UNKNOWN`
+- Previous reading `0.0007` → `WARNING` and `RISING`
