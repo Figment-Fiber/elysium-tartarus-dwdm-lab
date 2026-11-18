@@ -106,3 +106,7 @@ With a warning threshold of `0.0008` and a latest reading of `0.0009`, the scrip
 
 - Previous reading `None` → `WARNING` and `UNKNOWN`
 - Previous reading `0.0007` → `WARNING` and `RISING`
+
+### Packet lab — leaf-spine topology
+
+[Day 12 topology and run instructions](packet-labs/day12/README.md) include a six-node FRRouting/Alpine lab and its saved TopoViewer layout. Deployment and visual inspection are complete. BGP configuration, traffic validation and failover testing are upcoming work.
